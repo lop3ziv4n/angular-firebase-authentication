@@ -1,11 +1,10 @@
 <div class="form-container" id="toolbar">
-  <header [@fallIn]="state">
+  <header>
     <button (click)="logout()" class="basic-btn">Logout</button>
   </header>
-  <div id="page" [@moveInLeft]="state">
-    <h2>Hey {{ name.auth.displayName }}!</h2>
-
+  <div id="page">
+    <h2 *ngIf="email">Hey {{ email }}!</h2>
+    <h2 *ngIf="name">Hey {{ name }}!</h2>
     <img src="assets/images/filler.png"/>
   </div>
-
 </div>

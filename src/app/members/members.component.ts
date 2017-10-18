@@ -1,25 +1,24 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthenticationService} from '../services/authentication.service';
 import {Router} from '@angular/router';
-import {fallIn, moveIn, moveInLeft} from '../router.animations';
 
 @Component({
   selector: 'app-members',
   templateUrl: './members.component.html',
   styleUrls: ['./members.component.css'],
-  animations: [moveIn(), fallIn(), moveInLeft()],
-  host: {'[@moveIn]': ''}
 })
 export class MembersComponent implements OnInit {
 
-  name: any;
-  state: '';
+  email: string;
+  name: string;
 
   constructor(private authorizationService: AuthenticationService, private router: Router) {
-
-    this.authorizationService.state(auth => {
-      if (auth) {
-        this.name = auth;
+    this.authorizationService.authState((auth) => {
+      if (!auth) {
+        this.router.navigateByUrl('/login');
+      } else {
+        this.email = auth.email;
+        this.name = auth.displayName;
       }
     });
   }

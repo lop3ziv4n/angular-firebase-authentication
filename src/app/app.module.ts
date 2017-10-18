@@ -3,9 +3,9 @@ import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 
-import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { AngularFireAuthModule } from 'angularfire2/auth';
+import {AngularFireModule} from 'angularfire2';
+import {AngularFireDatabaseModule} from 'angularfire2/database';
+import {AngularFireAuthModule} from 'angularfire2/auth';
 
 import {AppComponent} from './app.component';
 import {LoginComponent} from './login/login.component';
@@ -15,7 +15,7 @@ import {SignupComponent} from './signup/signup.component';
 import {AuthenticationService} from './services/authentication.service';
 
 import {MembersComponent} from './members/members.component';
-import {AuthGuard} from './auth.service';
+import {AuthenticationGuard} from './services/authenticationguard.service';
 import {routes} from './app.routes';
 
 export const firebaseConfig = {
@@ -43,7 +43,7 @@ export const firebaseConfig = {
     AngularFireAuthModule,
     routes
   ],
-  providers: [AuthGuard, AuthenticationService],
+  providers: [AuthenticationGuard, AuthenticationService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

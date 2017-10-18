@@ -1,10 +1,16 @@
 import {Injectable} from '@angular/core';
 import {AngularFireAuth} from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
+import {Observable} from 'rxjs/Observable';
+import {User} from '../models/user.model';
 
 @Injectable()
 export class AuthenticationService {
+
+  private user: Observable<firebase.User>;
+
   constructor(private afAuth: AngularFireAuth) {
+    this.user = afAuth.authState;
   }
 
   google() {
@@ -15,19 +21,19 @@ export class AuthenticationService {
     return this.afAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider());
   }
 
-  emailLogin(email, password) {
-    return this.afAuth.auth.createUserWithEmailAndPassword(email, password);
+  signUp(user: User) {
+    return this.afAuth.auth.createUserWithEmailAndPassword(user.email, user.password);
   }
 
-  emailSign(email, password) {
-    return this.afAuth.auth.signInWithEmailAndPassword(email, password);
+  signIn(user: User) {
+    return this.afAuth.auth.signInWithEmailAndPassword(user.email, user.password);
   }
 
-  state(auth) {
-    return this.afAuth.authState.subscribe(auth);
-  }
-
-  logout(){
+  logout() {
     return this.afAuth.auth.signOut();
+  }
+
+  authState(user: any) {
+    return this.afAuth.auth.onAuthStateChanged(user);
   }
 }
