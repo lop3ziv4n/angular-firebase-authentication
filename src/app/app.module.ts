@@ -19,11 +19,11 @@ import {AuthenticationGuard} from './services/authenticationguard.service';
 import {routes} from './app.routes';
 
 export const firebaseConfig = {
-  apiKey: 'AIzaSyAkrt-lvZYT9EhIBFSsua7eUD9FkH-JGuM',
-  authDomain: 'angular-firebase-authenticate.firebaseapp.com',
-  databaseURL: 'https://angular-firebase-authenticate.firebaseio.com',
-  storageBucket: 'angular-firebase-authenticate.appspot.com',
-  messagingSenderId: '140570178050'
+  apiKey: '',
+  authDomain: '',
+  databaseURL: '',
+  storageBucket: '',
+  messagingSenderId: ''
 };
 
 @NgModule({
